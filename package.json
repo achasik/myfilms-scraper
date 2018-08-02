@@ -1,0 +1,24 @@
+{
+  "name": "myfils.scraper",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "8.9.1"
+  },
+  "main": "scraper.js",
+  "scripts": {
+    "start": "node scraper.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "he": "^1.1.1",
+    "mongoose": "4.13.3",
+    "node-fetch": "1.7.3",
+    "sqlite": "2.8.0",
+    "themoviedbclient": "^0.2.1",
+    "xml2js": "^0.4.19"
+  }
+}
