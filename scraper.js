@@ -47,14 +47,15 @@ async function processTorrent(torrent) {
    await mongo.addTorrent(torrent, film);
 }
 void (async function() {
-   console.log('Starting ---------------------------------------------------');
    try {
+      console.log('Starting ---------------------------------------------------');
       await processTrackers();
       const str = JSON.stringify(statistic);
       console.log(`${str}`);
    } catch (err) {
       console.error(err);
+   } finally {
+      console.log('Done -------------------------------------------------------');
+      process.exit();
    }
-   console.log('Done -------------------------------------------------------');
-   process.exit();
 })();
