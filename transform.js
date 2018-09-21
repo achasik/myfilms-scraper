@@ -93,7 +93,11 @@ const getIds = async function(torrent) {
    const kp = $('a[href*="kinopoisk"]').attr('href');
    ids['kp'] = kp ? parseInt(kp.match(/(\d{3,9})(\/|$)/)[1]) : undefined;
    const imdb = $('a[href*="imdb"]').attr('href');
-   ids['imdb'] = imdb ? imdb.match(/(tt\d+)/)[1] : undefined;
+   if (imdb) {
+      const match = imdb.match(/(tt\d+)/);
+      if (match.length > 1) ids['imdb'] = match[1];
+   }
+
    if (!torrent.magnet && torrent.url.indexOf('kinozal') > 0) {
       const mlink = 'http://s-kinozal-tv.appspot.com/getmagnet?' + torrent.url.substring(torrent.url.lastIndexOf('?') + 1);
       const mHtml = await web.getUrl(mlink);
