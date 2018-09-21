@@ -95,7 +95,7 @@ const getIds = async function(torrent) {
    const imdb = $('a[href*="imdb"]').attr('href');
    if (imdb) {
       const match = imdb.match(/(tt\d+)/);
-      if (match.length > 1) ids['imdb'] = match[1];
+      if (match && match.length > 1) ids['imdb'] = match[1];
    }
 
    if (!torrent.magnet && torrent.url.indexOf('kinozal') > 0) {
