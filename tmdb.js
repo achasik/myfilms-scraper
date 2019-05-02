@@ -21,7 +21,9 @@ module.exports = {
     if (found) return found;
     if (possible.kp) return possible;
     return null;
-  }
+  },
+  getVideos = getVideos
+  
 };
 
 const jsonToFilm = async function(json, possible) {
@@ -49,7 +51,7 @@ const getRu = async function(id) {
   return json ? json.overview : null;
 };
 
-export const getVideos = async function(id) {
+const getVideos = async function(id) {
   const json = await api.call(`/movie/${id}/videos`);
   return json & json.results
     ? json.results.map(r => {
