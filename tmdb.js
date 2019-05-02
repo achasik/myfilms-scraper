@@ -49,7 +49,7 @@ const getRu = async function(id) {
   return json ? json.overview : null;
 };
 
-const getVideos = async function(id) {
+export const getVideos = async function(id) {
   const json = await api.call(`/movie/${id}/videos`);
   return json & json.results
     ? json.results.map(r => {
