@@ -22,7 +22,7 @@ module.exports = {
     if (possible.kp) return possible;
     return null;
   },
-  getVideos: getVideos
+  getVideos: this.getVideos
 };
 
 const jsonToFilm = async function(json, possible) {
