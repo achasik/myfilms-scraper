@@ -117,8 +117,8 @@ module.exports = {
         }
       ]
     })
-      .slice(0, 200)
-      .filter(f => !!f.tmdb);
+      .filter(f => !!f.tmdb)
+      .slice(0, 200);
 
     console.log("Found movies " + found.length);
     for (let index = 0; index < found.length; index++) {
