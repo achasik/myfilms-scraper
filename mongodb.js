@@ -116,9 +116,10 @@ module.exports = {
           }
         }
       ]
-    });
+    })
+      .slice(0, 200)
+      .filter(f => !!f.tmdb);
 
-    found = found.slice(0, 200).filter(f => !!f.tmdb);
     console.log("Found movies " + found.length);
     for (let index = 0; index < found.length; index++) {
       const film = found[index];
