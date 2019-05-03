@@ -53,7 +53,10 @@ const jsonToFilm = async function(json, possible) {
   possible.poster = movie.poster_path;
   const description = await getRu(movie.id);
   possible.description = description || movie.overview;
-  if (possible.tmdb) possible.videos = await getVideos(possible.tmdb);
+  if (possible.tmdb) {
+    possible.videos = await getVideos(possible.tmdb);
+    console.log(possible.videos);
+  }
   return possible;
 };
 
