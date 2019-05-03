@@ -118,12 +118,12 @@ module.exports = {
       ]
     });
     console.log("Found movies " + found.length);
-    for (film of found.slice(0, 100)) {
-      film.videos = await tmdb.getVideos(film.tmdb);
-      if (film.videos && film.videos.length > 0) {
-        console.log(film.tmdb);
-        await film.save();
-      }
-    }
+    found.slice(0, 200).filter(f=>!!f.tmdb).forEach(film=>{
+        film.videos = await tmdb.getVideos(film.tmdb);
+        if (film.videos && film.videos.length > 0) {
+          console.log(film.tmdb);
+          await film.save();
+        }
+    })
   }
 };
