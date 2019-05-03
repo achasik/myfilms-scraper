@@ -120,7 +120,10 @@ module.exports = {
     console.log("Found movies " + found.length);
     for (film of found.slice(0, 100)) {
       film.videos = await tmdb.getVideos(film.tmdb);
-      await film.save();
+      if (film.videos && film.videos.length > 0) {
+        console.log(film.tmdb);
+        await film.save();
+      }
     }
   }
 };
