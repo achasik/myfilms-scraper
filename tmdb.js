@@ -22,7 +22,15 @@ module.exports = {
     if (possible.kp) return possible;
     return null;
   },
-  getVideos: this.getVideos
+  getVideos: async id => {
+    const json = await api.call(`/movie/${id}/videos`);
+    return json & json.results
+      ? json.results.map(r => {
+          name: r.name;
+          id: r.key;
+        })
+      : null;
+  }
 };
 
 const jsonToFilm = async function(json, possible) {
