@@ -1,3 +1,4 @@
+const tmdb = require("./tmdb");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, {
@@ -102,17 +103,14 @@ module.exports = {
     const found = await Film.find({
       $or: [
         {
-          // Check about no Company key
           videos: {
             $exists: false
           }
         },
         {
-          // Check for null
           videos: null
         },
         {
-          // Check for empty array
           videos: {
             $size: 0
           }
@@ -120,5 +118,9 @@ module.exports = {
       ]
     });
     console.log("Found movies " + found.length);
+    for (film of found.slice(0, 100)) {
+      film.videos = await tmdb.getVideos(film.tmdb);
+      await film.save();
+    }
   }
 };
