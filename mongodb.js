@@ -100,7 +100,24 @@ module.exports = {
 
   updateVideos: async () => {
     const found = await Film.find({
-      videos: { $size: 0 }
+      $or: [
+        {
+          // Check about no Company key
+          videos: {
+            $exists: false
+          }
+        },
+        {
+          // Check for null
+          videos: null
+        },
+        {
+          // Check for empty array
+          videos: {
+            $size: 0
+          }
+        }
+      ]
     });
     console.log("Found movies " + found.length);
   }
