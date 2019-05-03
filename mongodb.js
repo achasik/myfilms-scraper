@@ -100,7 +100,7 @@ module.exports = {
   },
 
   updateVideos: async () => {
-    const found = await Film.find({
+    let found = await Film.find({
       $or: [
         {
           videos: {
@@ -116,9 +116,8 @@ module.exports = {
           }
         }
       ]
-    })
-      .filter(f => !!f.tmdb)
-      .slice(0, 200);
+    });
+    found = found.filter(f => !!f.tmdb).slice(0, 200);
 
     console.log("Found movies " + found.length);
     for (let index = 0; index < found.length; index++) {
