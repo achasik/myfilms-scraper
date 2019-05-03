@@ -22,6 +22,7 @@ module.exports = {
     if (possible.kp) return possible;
     return null;
   },
+
   getVideos: async id => {
     const json = await api.call(`/movie/${id}/videos`);
     return json & json.results
