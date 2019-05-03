@@ -100,7 +100,7 @@ module.exports = {
 
   updateVideos: async () => {
     const found = await Film.find({
-      "videos.0": { $exists: true }
+      videos: { $size: 0 }
     });
     console.log("Found movies " + found.length);
   }
