@@ -41,7 +41,7 @@ const jsonToFilm = async function(json, possible) {
   possible.poster = movie.poster_path;
   const description = await getRu(movie.id);
   possible.description = description || movie.overview;
-  possible.videos = await getVideos(id);
+  if (possible.tmdb) possible.videos = await getVideos(possible.tmdb);
   return possible;
 };
 

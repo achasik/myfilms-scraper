@@ -100,8 +100,7 @@ module.exports = {
 
   updateVideos: async () => {
     const found = await Film.find({
-      "videos.0": { $exists: true },
-      tmdb: { $ne: null }
+      "videos.0": { $exists: true }
     });
     console.log("Found movies " + found.length);
   }
