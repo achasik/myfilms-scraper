@@ -124,7 +124,7 @@ module.exports = {
       const film = found[index];
       film.videos = await tmdb.getVideos(film.tmdb);
       if (film.videos && film.videos.length > 0) {
-        console.log(film.tmdb);
+        console.log(film.tmdb, film.name);
         await film.save();
       }
     }

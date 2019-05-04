@@ -27,6 +27,7 @@ async function processFeed(feed, trackerId) {
   statistic.torrentsTotal += torrents.length;
   await processTorrents(torrents);
 }
+
 async function processTorrents(torrents) {
   for (var torrent of torrents) {
     var found = await mongo.getTorrent(torrent.trackerId, torrent.myId);
@@ -36,6 +37,7 @@ async function processTorrents(torrents) {
     }
   }
 }
+
 async function processTorrent(torrent) {
   const film = await transform.torrentToFilm(torrent);
   if (!film) {
@@ -48,13 +50,14 @@ async function processTorrent(torrent) {
   }
   await mongo.addTorrent(torrent, film);
 }
+
 void (async function() {
   try {
     console.log("Starting ---------------------------------------------------");
-    //await mongo.updateVideos();
-    await processTrackers();
-    const str = JSON.stringify(statistic);
-    console.log(`${str}`);
+    await mongo.updateVideos();
+    // await processTrackers();
+    // const str = JSON.stringify(statistic);
+    // console.log(`${str}`);
   } catch (err) {
     console.error(err);
   } finally {
