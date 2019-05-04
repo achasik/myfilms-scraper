@@ -67,10 +67,12 @@ const getRu = async function(id) {
 
 const getVideos = async function(id) {
   const json = await api.call(`/movie/${id}/videos`);
-  if (!json || !json.results) return [];
+  if (!json || !json.results || !json.results.length) return [];
   console.log(id, json.results);
-  return json.results.map(r => ({
-    name: r.name,
-    id: r.key
-  }));
+  return json.results.map(r => {
+    return {
+      name: r.name,
+      id: r.key
+    };
+  });
 };

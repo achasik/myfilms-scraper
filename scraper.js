@@ -54,10 +54,10 @@ async function processTorrent(torrent) {
 void (async function() {
   try {
     console.log("Starting ---------------------------------------------------");
-    await mongo.updateVideos();
-    // await processTrackers();
-    // const str = JSON.stringify(statistic);
-    // console.log(`${str}`);
+    //await mongo.updateVideos();
+    await processTrackers();
+    const str = JSON.stringify(statistic);
+    console.log(`${str}`);
   } catch (err) {
     console.error(err);
   } finally {
