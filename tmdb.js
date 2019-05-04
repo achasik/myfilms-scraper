@@ -25,7 +25,7 @@ module.exports = {
 
   getVideos: async id => {
     const json = await api.call(`/movie/${id}/videos`);
-    console.log(id, json);
+    // console.log(id, json);
     return json && json.results
       ? json.results.map(r => {
           return {
@@ -33,7 +33,7 @@ module.exports = {
             id: r.key
           };
         })
-      : null;
+      : [];
   }
 };
 
