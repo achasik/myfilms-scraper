@@ -55,7 +55,7 @@ const jsonToFilm = async function(json, possible) {
   possible.description = description || movie.overview;
   if (possible.tmdb) {
     possible.videos = await getVideos(possible.tmdb);
-    console.log(possible.videos);
+    // console.log(possible.videos);
   }
   return possible;
 };
@@ -68,7 +68,7 @@ const getRu = async function(id) {
 const getVideos = async function(id) {
   const json = await api.call(`/movie/${id}/videos`);
   if (!json || !json.results || !json.results.length) return [];
-  console.log(id, json.results);
+  console.log("vidoes found", id, json.results);
   return json.results.map(r => {
     return {
       name: r.name,
