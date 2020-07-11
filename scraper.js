@@ -6,8 +6,9 @@ var statistic = {
    torrentsNotFound: 1,
 };
 async function processTrackers() {
+   await mongo.deleteFilms();
    const trackers = await mongo.getTrackers();
-   const docs = trackers.find((t) => t.name === 'Documentary');
+   // const docs = trackers.find((t) => t.name === 'Documentary');
    const promices = trackers.map((tracker) => processFeeds(tracker.feeds, tracker.myId));
    await Promise.all(promices);
 }
