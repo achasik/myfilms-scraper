@@ -8,6 +8,10 @@ const Tracker = require('./models/tracker');
 const Film = require('./models/film');
 const Torrent = require('./models/torrent');
 
+const removeByName = (arr, name) => {
+   const idx = arr.findIndex((e) => e.name === name);
+   if (idx > -1) arr.splice(idx, 1);
+};
 module.exports = {
    migrateTrackers: async (trackers) => {
       for (var tracker of trackers) {
@@ -128,5 +132,14 @@ module.exports = {
    },
    deleteFilms: async () => {
       await Film.find({ torrents: null }).deleteMany();
+   },
+   deleteFeeds: async () => {
+      const tracker = await Tracker.findOne({ name: 'Documentary' });
+      if (tracker) {
+         this.removeByName(tracker.feeds, 'Тайны века / Спецслужбы / Теории Заговоров');
+         this.removeByName(tracker.feeds, 'Альтернативная история и наука');
+         await tracker.save();
+         console.log('Feeds deleted');
+      }
    },
 };
