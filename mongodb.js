@@ -136,8 +136,8 @@ module.exports = {
    deleteFeeds: async () => {
       const tracker = await Tracker.findOne({ name: 'Documentary' });
       if (tracker) {
-         this.removeByName(tracker.feeds, 'Тайны века / Спецслужбы / Теории Заговоров');
-         this.removeByName(tracker.feeds, 'Альтернативная история и наука');
+         removeByName(tracker.feeds, 'Тайны века / Спецслужбы / Теории Заговоров');
+         removeByName(tracker.feeds, 'Альтернативная история и наука');
          await tracker.save();
          console.log('Feeds deleted');
       }
